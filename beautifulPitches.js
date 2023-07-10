@@ -5,18 +5,25 @@ function getNumberOfPitches(){
 }
 
 function breakDescriptionByPitches(pitchDescription){
-    let pitchIterator = pitchDescription.matchAll(/^p\d.*/gi);
+    let pitchIterator = pitchDescription.matchAll(/^p\d.*/gism);
     let pitchDescriptionArray = Array.from(pitchIterator);
     return pitchDescriptionArray;
 }
 
+function findGrades(pitchDescriptionArray){
+    for( i = 0; i < pitchDescriptionArray.length; i++){
+        //TODO Regex hurts my little brain
+        if(pitchDescriptionArray[i].search();
+}
+
 function createTable(pitchDescriptionArray){
-    let routeDescription = document.getElementsByClassName("fr-view")[0];
     let numberOfPitches = pitchDescriptionArray.length;
     let pitchTable = document.createElement("table");
-
+    pitchTable.id = "beautifulPitchesTable";
     for( let i = 0; i < numberOfPitches; i++){
         const tableRow = pitchTable.insertRow();
+        if(i % 2 == 0){
+            tableRow.bgColor = "#f2f2f2";
         for( let j = 0; j <2; j++){
             const tableCell = tableRow.insertCell();
             if(j === 0){
