@@ -1,0 +1,17 @@
+{
+	"manifest_version": 2,
+	"name": "BeautifulPitches",
+	"version": "1.0",
+
+	"description": "creates a nice easily readable table for pitch descriptions on mountainproject",
+	"icons": {
+		"48": "https://www.google.com/s2/favicons?sz=64&domain=mountainproject.com"
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["*://www.mountainproject.com/route/*"],
+			"js": ["beautifulPitches.js"]
+		}
+	]
+}
