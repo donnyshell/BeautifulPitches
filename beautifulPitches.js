@@ -4,8 +4,10 @@ function getNumberOfPitches(){
     return numberOfPitches;
 }
 
-function breakDescriptionByPitches(pitchDescriptionArray){
-    
+function breakDescriptionByPitches(pitchDescription){
+    let pitchIterator = pitchDescription.matchAll(/^p\d.*/gi);
+    let pitchDescriptionArray = Array.from(pitchIterator);
+    return pitchDescriptionArray;
 }
 
 function createTable(pitchDescriptionArray){
@@ -36,7 +38,9 @@ function beautifulPitches() {
     }
 
     //parse the description, break it up and pass it to create table
-    1let pitchDescriptionArray = routeDescription.innerText.split('\n').filter(pitch => pitch.match(/^P\d/));
+    //let pitchDescriptionArray = routeDescription.innerText.split('\n').filter(pitch => pitch.match(/^P\d/));
+
+    let descriptionArray = breakDescriptionByPitches(routeDescription.innerText);
     if( pitchDescriptionArray.length === numberOfPitches){
         var pitchTable = createTable(pitchDescriptionArray);
     }
