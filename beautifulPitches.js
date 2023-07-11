@@ -5,7 +5,7 @@ function getNumberOfPitches(){
 }
 
 function breakDescriptionByPitches(pitchDescription){
-    let pitchIterator = pitchDescription.matchAll(/^p\d.*/gism);
+    let pitchIterator = pitchDescription.matchAll(/(?:^p\d.{0,4})\w.*/gim);
     let pitchDescriptionArray = Array.from(pitchIterator);
     return pitchDescriptionArray;
 }
@@ -13,7 +13,8 @@ function breakDescriptionByPitches(pitchDescription){
 function findGrades(pitchDescriptionArray){
     for( i = 0; i < pitchDescriptionArray.length; i++){
         //TODO Regex hurts my little brain
-        if(pitchDescriptionArray[i].search();
+        if(pitchDescriptionArray[i].search());
+		}
 }
 
 function createTable(pitchDescriptionArray){
@@ -22,8 +23,6 @@ function createTable(pitchDescriptionArray){
     pitchTable.id = "beautifulPitchesTable";
     for( let i = 0; i < numberOfPitches; i++){
         const tableRow = pitchTable.insertRow();
-        if(i % 2 == 0){
-            tableRow.bgColor = "#f2f2f2";
         for( let j = 0; j <2; j++){
             const tableCell = tableRow.insertCell();
             if(j === 0){
@@ -38,21 +37,31 @@ function createTable(pitchDescriptionArray){
 }
 
 function beautifulPitches() {
+    console.log("beautiful Pitches start");
     //get number of pitches, run if multipitch
-    let numberOfPitches = GetNumberOfPitches();
+    let numberOfPitches = getNumberOfPitches();
     if(!numberOfPitches){
+        console.log("pitches do not match expected value");
         return 0;
     }
+    console.log("pitches match expected value");
 
     //parse the description, break it up and pass it to create table
     //let pitchDescriptionArray = routeDescription.innerText.split('\n').filter(pitch => pitch.match(/^P\d/));
 
-    let descriptionArray = breakDescriptionByPitches(routeDescription.innerText);
+    let pitchDescriptionArray = breakDescriptionByPitches(routeDescription.innerText);
     if( pitchDescriptionArray.length === numberOfPitches){
         var pitchTable = createTable(pitchDescriptionArray);
     }
     routeDescription.insertAdjacentHTML('afterend', pitchTable.outerHTML);
 };
-
+console.log("beautifulpitches started");
 const routeDescription = document.getElementsByClassName("fr-view")[0];
 beautifulPitches();
+
+
+style = "table #beautifulPitchesTable {border-collapse: collapse;width: 100%;}th, td {text-align: left;padding: 8px;}{tr:nth-child(even) {background-color: #f2f2f2;}";
+let styleSheet = document.createElement("style");
+styleSheet.innerText = style;
+document.head.appendChild(styleSheet)
+
