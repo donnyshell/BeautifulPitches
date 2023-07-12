@@ -21,7 +21,7 @@ function createTable(pitchDescriptionArray){
     let numberOfPitches = pitchDescriptionArray.length;
     let pitchTable = document.createElement("table");
     pitchTable.id = "beautifulPitchesTable";
-    pitchTable.innerHTML+="<colgroup><col span=\"1\" style=\"width:10%\"></colgroup>"
+    pitchTable.innerHTML+="<colgroup><col span=\"1\" style=\"width:10%\"></colgroup><tr><th>Pitch</th><th style=\"text-align:center\">Description</th></tr></table>"
     for( let i = 0; i < numberOfPitches; i++){
         const tableRow = pitchTable.insertRow();
         for( let j = 0; j <2; j++){
@@ -60,4 +60,3 @@ style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; 
 let styleSheet = document.createElement("style");
 styleSheet.innerText = style;
 document.head.appendChild(styleSheet)
-
