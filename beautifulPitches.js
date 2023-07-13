@@ -37,6 +37,20 @@ function createTable(pitchDescriptionArray){
     return pitchTable;
 }
 
+function createButton(){
+    let revertButton = document.createElement("button");
+    revertButton.innerText = "Make Pitches Ugly Again";
+    revertButton.id = "revertButton"
+    return revertButton
+}
+
+function swapDescription(active, pitchDescriptionArray){
+
+    console.log("button clicked lmao");
+    return 0;
+
+}
+
 function beautifulPitches() {
     //get number of pitches, run if multipitch
     let numberOfPitches = getNumberOfPitches();
@@ -49,14 +63,20 @@ function beautifulPitches() {
     if( pitchDescriptionArray.length === numberOfPitches){
         var pitchTable = createTable(pitchDescriptionArray);
     }
+    let active = true;
+    let options = [pitchTable, pitchDescriptionArray];
+    let revertButton = createButton();
+    revertButton.addEventListener("click", swapDescription);
+    routeDescription.insertAdjacentElement("afterbegin", revertButton);
     routeDescription.insertAdjacentHTML('afterend', pitchTable.outerHTML);
+    createButton();
     return 0;
 };
 const routeDescription = document.getElementsByClassName("fr-view")[0];
 beautifulPitches();
 
 
-style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; width: 100%; background-color: #ecf2f9}th, td {text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #ffffff }";
+style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; width: 100%; background-color: #ecf2f9}th, td {text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #ffffff}";
 let styleSheet = document.createElement("style");
 styleSheet.innerText = style;
-document.head.appendChild(styleSheet)
+document.head.insertAdjacentElement("beforeend", styleSheet)

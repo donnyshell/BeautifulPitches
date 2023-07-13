@@ -3,6 +3,9 @@
 	"name": "BeautifulPitches",
 	"version": "1.0",
 	"description": "creates a nice easily readable table for pitch descriptions on mountainproject",
+	"icons":{
+		"48": "icon.png"
+	},
 	"content_scripts": [
 		{
 			"matches": ["*://www.mountainproject.com/route/*"],
