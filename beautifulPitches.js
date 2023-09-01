@@ -51,6 +51,7 @@ function swapDescription(active, pitchDescriptionArray){
 
 }
 
+
 function beautifulPitches() {
     //get number of pitches, run if multipitch
     let numberOfPitches = getNumberOfPitches();
@@ -58,25 +59,27 @@ function beautifulPitches() {
         return 0;
     }
 
-
+    //break pitch description into table entries and create the table
     let pitchDescriptionArray = breakDescriptionByPitches(routeDescription.innerText);
     if( pitchDescriptionArray.length === numberOfPitches){
         var pitchTable = createTable(pitchDescriptionArray);
     }
+
     let active = true;
     let options = [pitchTable, pitchDescriptionArray];
     let revertButton = createButton();
     revertButton.addEventListener("click", swapDescription);
     routeDescription.insertAdjacentElement("afterbegin", revertButton);
     routeDescription.insertAdjacentHTML('afterend', pitchTable.outerHTML);
-    createButton();
+
+
     return 0;
 };
 const routeDescription = document.getElementsByClassName("fr-view")[0];
 beautifulPitches();
 
 
-style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; width: 100%; background-color: #ecf2f9}th, td {text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #ffffff}";
+let style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; width: 100%; background-color: #ecf2f9}th, #beautifulPitchesTable td{text-align: left;padding: 8px} #beautifulPitchesTable tr:nth-child(even) {background-color: #ffffff}";
 let styleSheet = document.createElement("style");
 styleSheet.innerText = style;
 document.head.insertAdjacentElement("beforeend", styleSheet)
