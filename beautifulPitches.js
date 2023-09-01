@@ -10,12 +10,6 @@ function breakDescriptionByPitches(pitchDescription){
     return pitchDescriptionArray;
 }
 
-function findGrades(pitchDescriptionArray){
-    for( i = 0; i < pitchDescriptionArray.length; i++){
-        //TODO Regex hurts my little brain
-        if(pitchDescriptionArray[i].search(/5\.\d+[a-d]?/gim));
-		}
-}
 
 function createTable(pitchDescriptionArray){
     let numberOfPitches = pitchDescriptionArray.length;
@@ -37,12 +31,15 @@ function createTable(pitchDescriptionArray){
     return pitchTable;
 }
 
-function createButton(){
-    let revertButton = document.createElement("button");
-    revertButton.innerText = "Make Pitches Ugly Again";
-    revertButton.id = "revertButton"
-    return revertButton
+function styleTable(){
+    let style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; width: 100%; background-color: #ecf2f9}th, #beautifulPitchesTable td{text-align: left;padding: 8px} #beautifulPitchesTable tr:nth-child(even) {background-color: #ffffff}";
+    let styleSheet = document.createElement("style");
+    styleSheet.innerText = style;
+    document.head.insertAdjacentElement("beforeend", styleSheet)
+    return 0;
 }
+
+
 
 function swapDescription(active, pitchDescriptionArray){
 
@@ -53,6 +50,8 @@ function swapDescription(active, pitchDescriptionArray){
 
 
 function beautifulPitches() {
+
+    let routeDescription = document.getElementsByClassName("fr-view")[0];
     //get number of pitches, run if multipitch
     let numberOfPitches = getNumberOfPitches();
     if(!numberOfPitches){
@@ -65,21 +64,11 @@ function beautifulPitches() {
         var pitchTable = createTable(pitchDescriptionArray);
     }
 
-    let active = true;
-    let options = [pitchTable, pitchDescriptionArray];
-    let revertButton = createButton();
-    revertButton.addEventListener("click", swapDescription);
-    routeDescription.insertAdjacentElement("afterbegin", revertButton);
     routeDescription.insertAdjacentHTML('afterend', pitchTable.outerHTML);
-
+    styleTable();
 
     return 0;
 };
-const routeDescription = document.getElementsByClassName("fr-view")[0];
 beautifulPitches();
 
 
-let style = "#beautifulPitchesTable {table-layout: auto; border-collapse: collapse; width: 100%; background-color: #ecf2f9}th, #beautifulPitchesTable td{text-align: left;padding: 8px} #beautifulPitchesTable tr:nth-child(even) {background-color: #ffffff}";
-let styleSheet = document.createElement("style");
-styleSheet.innerText = style;
-document.head.insertAdjacentElement("beforeend", styleSheet)
