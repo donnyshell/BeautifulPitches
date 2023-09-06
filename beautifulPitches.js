@@ -1,12 +1,13 @@
 function getNumberOfPitches(){
+
     let routeDescription = document.getElementsByClassName("description-details")[0].rows[0].cells[1];
     let numberOfPitches = parseInt(routeDescription.innerText.match(/\d* pitches/));
     return numberOfPitches;
 }
 
 function breakDescriptionByPitches(pitchDescription){
-    let pitchIterator = pitchDescription.matchAll(/(?:^p\d.{0,4})\w.*/gim);
-    let pitchDescriptionArray = Array.from(pitchIterator);
+    let pitchIterator = pitchDescription.matchAll(/(?:^p(itch)? ?\d.{0,4})\w.*/gim);
+    let pitchDescriptionArray = Array.from(pitchIterator, (x) => {return(x.toString().replace(/^p(itch)? ?\d.*?(?=\w)/im, ""))});
     return pitchDescriptionArray;
 }
 
@@ -37,15 +38,6 @@ function styleTable(){
     styleSheet.innerText = style;
     document.head.insertAdjacentElement("beforeend", styleSheet)
     return 0;
-}
-
-
-
-function swapDescription(active, pitchDescriptionArray){
-
-    console.log("button clicked lmao");
-    return 0;
-
 }
 
 
